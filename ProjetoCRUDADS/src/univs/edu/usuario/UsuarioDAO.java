@@ -50,4 +50,13 @@ public class UsuarioDAO {
         
         return usuario;
     }
+     
+     public Usuario pesquisarId(int id){
+         sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        Usuario usuario = (Usuario) sessao.createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id)).uniqueResult();
+        sessao.close();
+        
+        return usuario;
+     }
 }
