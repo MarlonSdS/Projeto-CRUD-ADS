@@ -208,8 +208,6 @@ public class TelaUsuario extends javax.swing.JFrame {
            dao.editar(usuario);
            limparCampos();}
            
-           dao.salvar(usuario);
-           limparCampos();
            
        }
     }//GEN-LAST:event_btnSalvarActionPerformed

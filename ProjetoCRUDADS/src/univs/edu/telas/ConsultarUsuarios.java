@@ -130,23 +130,22 @@ public class ConsultarUsuarios extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/*
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-       int linha = tbUsuarios.getRowCount();
-       if(linha == -1){
-           JOptionPane.showMessageDialog(null, "Selecione um Usuário!");
-       }else if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este usuário?", "Excluir", 
-               JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-           usuario = dao.pesquisarId((int) tbUsuarios.getValueAt(linha, 0));
-           dao.excluir(usuario);
-           JOptionPane.showMessageDialog(null, "Usuário excluido com sucesso!");
-           atualizarTabela();
+     
+    }//GEN-LAST:event_btnExcluirActionPerformed
+*/
+    private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
+        int linha = tbUsuarios.getSelectedRow();
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
+        } else if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este usuário?", "Excluir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            usuario = dao.pesquisar((int) tbUsuarios.getValueAt(linha, 0));
+            dao.excluir(usuario);
+            JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso!");
+            atualizarTabela();
            
        }
-    }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluir1ActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -156,7 +155,7 @@ public class ConsultarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int linha = tbUsuarios.getRowCount();
+        int linha = tbUsuarios.getSelectedRow();
        if(linha == -1){
            JOptionPane.showMessageDialog(null, "Selecione um Usuário!");
        }else{
@@ -167,7 +166,7 @@ public class ConsultarUsuarios extends javax.swing.JFrame {
            tUsuario.setVisible(true);
            dispose();
     }//GEN-LAST:event_btnEditarActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */

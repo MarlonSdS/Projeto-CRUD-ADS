@@ -33,8 +33,8 @@ public class UsuarioTableModel extends AbstractTableModel {
                 return usuario.getNomeUsuario();
             case 2:
                 return usuario.getLogin();
-            //case 3:
-              //  return usuario.getSenha();
+            case 3:
+                return usuario.getSenha();
         }
         return null;
     }

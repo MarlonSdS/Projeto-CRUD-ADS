@@ -63,7 +63,8 @@ public class UsuarioDAO {
      public void editar(Usuario usuario){
          sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        sessao.save(usuario);
+        sessao.update(usuario);
+        JOptionPane.showMessageDialog(null, "Usuário Editado!");
         transacao.commit();
         sessao.close();
      }
