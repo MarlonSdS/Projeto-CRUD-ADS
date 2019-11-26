@@ -59,4 +59,12 @@ public class UsuarioDAO {
         
         return usuario;
      }
+     
+     public void editar(Usuario usuario){
+         sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        sessao.save(usuario);
+        transacao.commit();
+        sessao.close();
+     }
 }

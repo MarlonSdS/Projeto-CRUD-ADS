@@ -2,6 +2,7 @@
 package univs.edu.telas;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import univs.edu.usuario.Usuario;
 import univs.edu.usuario.UsuarioDAO;
 
@@ -47,9 +48,9 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         tfSenha = new javax.swing.JPasswordField();
         btnSalvar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -90,7 +91,12 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Pesquisar");
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +105,12 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Voltar");
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,13 +118,13 @@ public class TelaUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(btnSair)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(btnLimpar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnPesquisar)
                 .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
@@ -159,9 +170,9 @@ public class TelaUsuario extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
-                    .addComponent(jButton2)
+                    .addComponent(btnPesquisar)
                     .addComponent(btnLimpar)
-                    .addComponent(jButton4))
+                    .addComponent(btnSair))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
@@ -184,16 +195,40 @@ public class TelaUsuario extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
        if(tfNome.getText().isEmpty() || tfSenha.getText().isEmpty() || tfUsuario.getText().isEmpty()){
            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+       
        }else{
            usuario.setNomeUsuario(tfNome.getText());
            usuario.setLogin(tfUsuario.getText());
            usuario.setSenha(tfSenha.getText());
+           
+           if(usuario.getIdUsuario() != 0){
+           usuario.setNomeUsuario(tfNome.getText());
+           usuario.setLogin(tfUsuario.getText());
+           usuario.setSenha(tfSenha.getText());
+           dao.editar(usuario);
+           limparCampos();}
+           
            dao.salvar(usuario);
            limparCampos();
            
        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        ConsultarUsuarios pesquisa = new ConsultarUsuarios();
+        pesquisa.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    public void atualizarCampos(Usuario usuario){
+        tfNome.setText(usuario.getNomeUsuario());
+        tfUsuario.setText(usuario.getLogin());
+        tfSenha.setText(usuario.getSenha());
+    }
     
     /**
      * @param args the command line arguments
@@ -233,9 +268,9 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
