@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 public class UsuarioTableModel extends AbstractTableModel {
 
     private List<Usuario> usuarios = new ArrayList<>();
-    private String[] colunas = {"Id", "Nome", "Login"};
+    private String[] colunas = {"Id", "Nome", "Login", "Senha"};
 
     public UsuarioTableModel(List<Usuario> usuarios) {
         this.usuarios = usuarios;

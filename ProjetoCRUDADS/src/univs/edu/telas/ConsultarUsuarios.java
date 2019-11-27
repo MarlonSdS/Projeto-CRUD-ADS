@@ -159,10 +159,10 @@ public class ConsultarUsuarios extends javax.swing.JFrame {
        if(linha == -1){
            JOptionPane.showMessageDialog(null, "Selecione um Usuário!");
        }else{
-           usuario = dao.pesquisarId((int) tbUsuarios.getValueAt(linha, 0));
+           usuario = dao.pesquisar((int) tbUsuarios.getValueAt(linha, 0));
            TelaUsuario tUsuario = new TelaUsuario();
            tUsuario.usuario = usuario;
-           tUsuario.atualizarCampos(usuario);
+           tUsuario.atualizarCampos();
            tUsuario.setVisible(true);
            dispose();
     }//GEN-LAST:event_btnEditarActionPerformed
