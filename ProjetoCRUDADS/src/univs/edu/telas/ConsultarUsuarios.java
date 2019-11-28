@@ -137,17 +137,19 @@ public class ConsultarUsuarios extends javax.swing.JFrame {
 */
     private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
         int linha = tbUsuarios.getSelectedRow();
-        if (linha == -1) {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
-        } else if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este usuário?", "Excluir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            usuario = dao.pesquisar((int) tbUsuarios.getValueAt(linha, 0));
+        if (linha != -1){
+            int id = (int) tbUsuarios.getValueAt(linha, 0);
+            usuario = dao.pesquisar(id);
             dao.excluir(usuario);
-            JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso!");
             atualizarTabela();
-           
+            JOptionPane.showMessageDialog(null, "Usuário Excluído!");
+        } else{          
+           JOptionPane.showMessageDialog(null, "Selecione uma linha!");
        }
+        
     }//GEN-LAST:event_btnExcluir1ActionPerformed
-
+    
+    
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         TelaUsuario tela1 = new TelaUsuario();
         tela1.setVisible(true);
